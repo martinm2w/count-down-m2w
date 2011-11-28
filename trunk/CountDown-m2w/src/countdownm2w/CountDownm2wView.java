@@ -115,8 +115,8 @@ public class CountDownm2wView extends FrameView {
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         MinsCD_StartButton = new javax.swing.JButton();
-        MinsCD_PauseButton = new javax.swing.JButton();
-        MinsCD_StopButton = new javax.swing.JButton();
+        MinsCD_ResetButton = new javax.swing.JButton();
+        MinsCD_PauseButton = new javax.swing.JToggleButton();
         MinsCD_CounterLable = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -199,14 +199,19 @@ public class CountDownm2wView extends FrameView {
             }
         });
 
+        MinsCD_ResetButton.setText(resourceMap.getString("MinsCD_ResetButton.text")); // NOI18N
+        MinsCD_ResetButton.setName("MinsCD_ResetButton"); // NOI18N
+        MinsCD_ResetButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MinsCD_ResetButtonMouseClicked(evt);
+            }
+        });
+
         MinsCD_PauseButton.setText(resourceMap.getString("MinsCD_PauseButton.text")); // NOI18N
         MinsCD_PauseButton.setName("MinsCD_PauseButton"); // NOI18N
-
-        MinsCD_StopButton.setText(resourceMap.getString("MinsCD_StopButton.text")); // NOI18N
-        MinsCD_StopButton.setName("MinsCD_StopButton"); // NOI18N
-        MinsCD_StopButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MinsCD_StopButtonMouseClicked(evt);
+        MinsCD_PauseButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                MinsCD_PauseButtonItemStateChanged(evt);
             }
         });
 
@@ -215,11 +220,12 @@ public class CountDownm2wView extends FrameView {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MinsCD_StartButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MinsCD_StopButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MinsCD_PauseButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(MinsCD_StartButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(MinsCD_ResetButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MinsCD_PauseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,7 +234,7 @@ public class CountDownm2wView extends FrameView {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MinsCD_PauseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MinsCD_StopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(MinsCD_ResetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         MinsCD_CounterLable.setFont(resourceMap.getFont("MinsCD_CounterLable.font")); // NOI18N
@@ -239,26 +245,28 @@ public class CountDownm2wView extends FrameView {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(4, 4, 4)
-                .addComponent(MinsCD_minInputBox, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                .addGap(24, 24, 24)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MinsCD_modeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(MinsCD_CounterLable, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(MinsCD_CounterLable, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(4, 4, 4)
+                        .addComponent(MinsCD_minInputBox, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(MinsCD_modeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,11 +279,11 @@ public class CountDownm2wView extends FrameView {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MinsCD_CounterLable, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(MinsCD_CounterLable, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         MinsCD_tab.addTab(resourceMap.getString("jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
@@ -452,9 +460,8 @@ public class CountDownm2wView extends FrameView {
     private void MinsCD_StartButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinsCD_StartButtonMouseClicked
         // TODO add your handling code here:
 //        startTime = System.currentTimeMillis();
-        MinsCD_Timer = new MinsCD(MinsCD_CounterLable, MinsCD_mins);
-        
         if(this.checkMinsInputType()){
+            MinsCD_Timer = new MinsCD(MinsCD_CounterLable, MinsCD_mins);
             if(MinsCD_Mode.equalsIgnoreCase("auto")){
                 //start count down auto
                 MinsCD_Timer.startCDauto();
@@ -470,10 +477,15 @@ public class CountDownm2wView extends FrameView {
         MinsCD_mins = MinsCD_minInputBox.getText();
     }//GEN-LAST:event_MinsCD_tabMouseMoved
 
-    private void MinsCD_StopButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinsCD_StopButtonMouseClicked
+    private void MinsCD_ResetButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinsCD_ResetButtonMouseClicked
         // TODO add your handling code here:
-        MinsCD_Timer.stopCD();
-    }//GEN-LAST:event_MinsCD_StopButtonMouseClicked
+        MinsCD_Timer.resetCD();
+    }//GEN-LAST:event_MinsCD_ResetButtonMouseClicked
+
+    private void MinsCD_PauseButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_MinsCD_PauseButtonItemStateChanged
+        // TODO add your handling code here:
+        MinsCD_CounterLable.setText("123");
+    }//GEN-LAST:event_MinsCD_PauseButtonItemStateChanged
 
     private boolean checkMinsInputType(){
 //        String minsInput = MinsCD_minInputBox.getText();
@@ -492,9 +504,9 @@ public class CountDownm2wView extends FrameView {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel MinsCD_CounterLable;
-    private javax.swing.JButton MinsCD_PauseButton;
+    private javax.swing.JToggleButton MinsCD_PauseButton;
+    private javax.swing.JButton MinsCD_ResetButton;
     private javax.swing.JButton MinsCD_StartButton;
-    private javax.swing.JButton MinsCD_StopButton;
     private javax.swing.JTextField MinsCD_minInputBox;
     private javax.swing.JComboBox MinsCD_modeBox;
     private javax.swing.JTabbedPane MinsCD_tab;

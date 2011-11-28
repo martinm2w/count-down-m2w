@@ -20,10 +20,12 @@ public class MinsCD implements ActionListener{
 //    private String MinsCD_Mode = "";
     private String MinsCD_mins = "";
     private javax.swing.Timer MinsCD_Timer;
+
     private long MinsCD_now = 0;
     private long MinsCD_elapsed = 0;
     private long MinsCD_remaining = 0;
     private long MinsCD_lastUpdate = 0;
+
     private NumberFormat format; // Format minutes:seconds with leading zeros
     private javax.swing.JLabel MinsCD_CounterLable;
 
@@ -44,10 +46,27 @@ public class MinsCD implements ActionListener{
         MinsCD_Timer.start();
     }
 
-    public void stopCD(){
+    public void resetCD(){
         MinsCD_Timer.stop();
+        MinsCD_now = 0;
+        MinsCD_elapsed = 0;
+        MinsCD_remaining = 0;
+        MinsCD_lastUpdate = 0;
+        MinsCD_CounterLable.setText("00:00:00");
     }
 
+    //resume the countdown
+    public void resumeCD() {
+    // Restore the time we're counting down from and restart the timer.
+    MinsCD_lastUpdate = System.currentTimeMillis();
+    MinsCD_Timer.start(); // Start the timer
+}
+    public void pauseCD() {
+    // Subtract elapsed time from the remaining time and stop timing
+    long MinsCD_now = System.currentTimeMillis();
+    MinsCD_remaining -= (MinsCD_now - MinsCD_lastUpdate);
+    MinsCD_Timer.stop(); // Stop the timer
+}
 
     @Override
     public void actionPerformed(ActionEvent e){
