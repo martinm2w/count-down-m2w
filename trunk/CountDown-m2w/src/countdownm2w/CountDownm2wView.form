@@ -16,9 +16,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="MinsCD_tab" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="45" max="32767" attributes="0"/>
+                  <EmptySpace pref="37" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -129,9 +129,8 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="MinsCD_CounterLable" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="1"/>
                                               <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="1"/>
@@ -142,6 +141,7 @@
                                               <Component id="MinsCD_BreakMinInputBox" alignment="0" pref="73" max="32767" attributes="1"/>
                                           </Group>
                                       </Group>
+                                      <Component id="MinsCD_CounterLable" min="-2" pref="166" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -184,7 +184,7 @@
                               </Group>
                               <Component id="jPanel5" min="-2" pref="141" max="-2" attributes="1"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="MinsCD_ProgressBar" min="-2" pref="31" max="-2" attributes="0"/>
                           <EmptySpace pref="17" max="32767" attributes="0"/>
                       </Group>
